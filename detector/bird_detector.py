@@ -156,9 +156,9 @@ class BirdDetector:
                 logger.warning("Image capturée vide, ignorée")
                 return
             
-            # Générer un nom de fichier temporaire
+            # Générer un nom de fichier temporaire dans captures_dir
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
-            temp_filename = f"temp_bird_{timestamp}.jpg"
+            temp_filename = str(self.captures_dir / f"temp_bird_{timestamp}.jpg")
             
             # Sauvegarder temporairement
             cv2.imwrite(temp_filename, bird_crop)
