@@ -6,7 +6,7 @@ services:
     volumes:
       - ./api:/api
       - ./model:/model
-      - ./captures:/captures
+      - bird-captures:/captures
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
@@ -24,7 +24,7 @@ services:
       - .env
     volumes:
       - ./detector:/detector
-      - ./captures:/captures
+      - bird-captures:/captures
     depends_on:
       bird_identifier_api:
         condition: service_healthy
@@ -32,6 +32,9 @@ services:
     command: python /detector/bird_detector.py
     networks:
       - clzk-net
+
+volumes:
+  bird-captures:
 
 networks:
   clzk-net:
