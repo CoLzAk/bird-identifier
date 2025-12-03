@@ -162,6 +162,12 @@ class BirdDetector:
             
             # Sauvegarder temporairement
             cv2.imwrite(temp_filename, bird_crop)
+            # Debug: vérifier si le fichier existe et sa taille
+            if Path(temp_filename).exists():
+                file_size = Path(temp_filename).stat().st_size
+                logger.info(f"[DEBUG] Fichier temporaire créé: {temp_filename} ({file_size} octets)")
+            else:
+                logger.error(f"[DEBUG] Échec de création du fichier temporaire: {temp_filename}")
             
             logger.info(f"🐦 Oiseau détecté (confiance: {bird_info['confidence']:.2f}) - Identification en cours...")
             
@@ -170,7 +176,7 @@ class BirdDetector:
                 with open(temp_filename, 'rb') as f:
                     response = requests.post(
                         f"{self.api_url}/identify",
-                        files={'input': f},
+                        files={'input': ('bird.jpg', f, 'image/jpeg')},
                         timeout=10
                     )
                 
