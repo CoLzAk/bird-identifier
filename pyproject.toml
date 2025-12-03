@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "bird-identifier-api"
+version = "0.1.0"
+description = "Bird Identifier API built with FastAPI"
+authors = ["Joel Lauret <joel.lauret@gmail.com>"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+# API
+fastapi = "^0.122.0"
+uvicorn = { extras = ["standard"], version = "^0.29.0" }
+python-dotenv = "^1.0.1"
+python-multipart = "^0.0.20"
+# Modèle d'inférence
+torch = "^2.1.0"
+torchvision = "^0.16.0"
+timm = "^0.9.0"
+pillow = "^10.0.0"
+numpy = "^1.24.0"
+# Détection YOLO
+ultralytics = "^8.0.0"
+opencv-python-headless = "^4.8.0"  # headless pour serveur sans GUI
+requests = "^2.31.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+httpx = "^0.27"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

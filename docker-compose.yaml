@@ -1,0 +1,40 @@
+services:
+  bird_identifier_api:
+    build: .
+    env_file:
+      - .env
+    volumes:
+      - ./api:/api
+      - ./model:/model
+      - ./captures:/captures
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    expose:
+      - 8000
+    networks:
+      - clzk-net
+
+  bird_detector:
+    build: .
+    env_file:
+      - .env
+    volumes:
+      - ./detector:/detector
+      - ./captures:/captures
+    depends_on:
+      bird_identifier_api:
+        condition: service_healthy
+    restart: unless-stopped
+    command: python /detector/bird_detector.py
+    networks:
+      - clzk-net
+
+networks:
+  clzk-net:
+    external: true
+    name: clzk-net
+    driver: bridge
