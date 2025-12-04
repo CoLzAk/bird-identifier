@@ -123,15 +123,15 @@ If you see `Stream timeout triggered after 30003.561662 ms`:
 1. **Test the connection**: Run `python test_rtsp.py` to verify RTSP access
 2. **Check network connectivity**:
    ```bash
-   ping 192.168.1.74
+   ping camera_ip
    ```
 3. **Test with other tools**:
    ```bash
    # Using ffplay
-   ffplay rtsp://username:password@192.168.1.74:554/stream1
+   ffplay rtsp://username:password@camera_ip
 
    # Using VLC
-   vlc rtsp://username:password@192.168.1.74:554/stream1
+   vlc rtsp://username:password@camera_ip
    ```
 4. **Verify RTSP URL format**: Common formats are:
    - `rtsp://username:password@ip:port/stream1`
@@ -151,5 +151,5 @@ If you see `Stream timeout triggered after 30003.561662 ms`:
   - `./api:/api` - Hot reload for API code changes
   - `./model:/model` - Model file accessible to container
   - `./detector:/detector` - Detector code
-  - `./captures:/captures` - Shared directory for saving detected bird images
+  - `bird-captures:/captures` - Shared directory for saving detected bird images (persistent volume)
 - **YOLO Model**: The YOLOv8n model is pre-downloaded during Docker build (as root) to avoid permission issues. The model is cached in `/tmp/ultralytics` which has write permissions for www-data user.

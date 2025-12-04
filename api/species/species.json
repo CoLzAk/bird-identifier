@@ -1,0 +1,172 @@
+[
+  {
+    "name": "Aegithalos_caudatus",
+    "common_name": "Mésange à longue queue",
+    "thumbnail": "species/aegithalos_caudatus.jpg"
+  },
+  {
+    "name": "Carduelis_carduelis",
+    "common_name": "Chardonneret élégant",
+    "thumbnail": "species/carduelis_carduelis.jpg"
+  },
+  {
+    "name": "Chloris_chloris",
+    "common_name": "Verdier d'Europe",
+    "thumbnail": "species/chloris_chloris.jpg"
+  },
+  {
+    "name": "Cisticola_juncidis",
+    "common_name": "Cisticole des joncs",
+    "thumbnail": "species/cisticola_juncidis.jpg"
+  },
+  {
+    "name": "Coccothraustes_coccothraustes",
+    "common_name": "Grosbec casse-noyaux",
+    "thumbnail": "species/coccothraustes_coccothraustes.jpg"
+  },
+  {
+    "name": "Columba_livia_domestica",
+    "common_name": "Pigeon biset domestique",
+    "thumbnail": "species/columba_livia_domestica.jpg"
+  },
+  {
+    "name": "Columba_palumbus",
+    "common_name": "Pigeon ramier",
+    "thumbnail": "species/columba_palumbus.jpg"
+  },
+  {
+    "name": "Corvus_corone",
+    "common_name": "Corneille noire",
+    "thumbnail": "species/corvus_corone.jpg"
+  },
+  {
+    "name": "Cyanistes_caeruleus",
+    "common_name": "Mésange bleue",
+    "thumbnail": "species/cyanistes_caeruleus.jpg"
+  },
+  {
+    "name": "Dendrocopos_major",
+    "common_name": "Pic épeiche",
+    "thumbnail": "species/dendrocopos_major.jpg"
+  },
+  {
+    "name": "Erithacus_rubecula",
+    "common_name": "Rouge-gorge familier",
+    "thumbnail": "species/erithacus_rubecula.jpg"
+  },
+  {
+    "name": "Falco_tinnunculus",
+    "common_name": "Faucon crécerelle",
+    "thumbnail": "species/falco_tinnunculus.jpg"
+  },
+  {
+    "name": "Ficedula_hypoleuca",
+    "common_name": "Gobemouche noir",
+    "thumbnail": "species/ficedula_hypoleuca.jpg"
+  },
+  {
+    "name": "Fringilla_coelebs",
+    "common_name": "Pinson des arbres",
+    "thumbnail": "species/fringilla_coelebs.jpg"
+  },
+  {
+    "name": "Gallinula_chloropus",
+    "common_name": "Gallinule poule-d'eau",
+    "thumbnail": "species/gallinula_chloropus.jpg"
+  },
+  {
+    "name": "Garrulus_glandarius",
+    "common_name": "Geai des chênes",
+    "thumbnail": "species/garrulus_glandarius.jpg"
+  },
+  {
+    "name": "Milvus_migrans",
+    "common_name": "Milan noir",
+    "thumbnail": "species/milvus_migrans.jpg"
+  },
+  {
+    "name": "Motacilla_alba",
+    "common_name": "Bergeronnette grise",
+    "thumbnail": "species/motacilla_alba.jpg"
+  },
+  {
+    "name": "Parus_major",
+    "common_name": "Mésange charbonnière",
+    "thumbnail": "species/parus_major.jpg"
+  },
+  {
+    "name": "Passer_domesticus",
+    "common_name": "Moineau domestique",
+    "thumbnail": "species/passer_domesticus.jpg"
+  },
+  {
+    "name": "Phoenicurus_ochruros",
+    "common_name": "Rougequeue noir",
+    "thumbnail": "species/phoenicurus_ochruros.jpg"
+  },
+  {
+    "name": "Phylloscopus_collybita",
+    "common_name": "Pouillot véloce",
+    "thumbnail": "species/phylloscopus_collybita.jpg"
+  },
+  {
+    "name": "Pica_pica",
+    "common_name": "Pie bavarde",
+    "thumbnail": "species/pica_pica.jpg"
+  },
+  {
+    "name": "Picus_viridis",
+    "common_name": "Pic vert",
+    "thumbnail": "species/picus_viridis.jpg"
+  },
+  {
+    "name": "Prunella_modularis",
+    "common_name": "Accenteur mouchet",
+    "thumbnail": "species/prunella_modularis.jpg"
+  },
+  {
+    "name": "Regulus_ignicapilla",
+    "common_name": "Roitelet à triple bandeau",
+    "thumbnail": "species/regulus_ignicapilla.jpg"
+  },
+  {
+    "name": "Serinus_serinus",
+    "common_name": "Serin cini",
+    "thumbnail": "species/serinus_serinus.jpg"
+  },
+  {
+    "name": "Sitta_europaea",
+    "common_name": "Sittelle torchepot",
+    "thumbnail": "species/sitta_europaea.jpg"
+  },
+  {
+    "name": "Streptopelia_decaocto",
+    "common_name": "Tourterelle turque",
+    "thumbnail": "species/streptopelia_decaocto.jpg"
+  },
+  {
+    "name": "Sturnus_vulgaris",
+    "common_name": "Étourneau sansonnet",
+    "thumbnail": "species/sturnus_vulgaris.jpg"
+  },
+  {
+    "name": "Sylvia_atricapilla",
+    "common_name": "Fauvette à tête noire",
+    "thumbnail": "species/sylvia_atricapilla.jpg"
+  },
+  {
+    "name": "Turdus_merula",
+    "common_name": "Merle noir",
+    "thumbnail": "species/turdus_merula.jpg"
+  },
+  {
+    "name": "Turdus_philomelos",
+    "common_name": "Grive musicienne",
+    "thumbnail": "species/turdus_philomelos.jpg"
+  },
+  {
+    "name": "Upupa_epops",
+    "common_name": "Huppe fasciée",
+    "thumbnail": "species/upupa_epops.jpg"
+  }
+]

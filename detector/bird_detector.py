@@ -38,7 +38,8 @@ class BirdDetector:
         self.api_url = os.getenv('API_URL', 'http://localhost:8000')
         
         # Paramètres de détection
-        self.confidence_threshold = float(os.getenv('YOLO_CONFIDENCE', '0.5'))
+        self.yolo_confidence_threshold = float(os.getenv('YOLO_CONFIDENCE', '0.5'))
+        self.model_confidence_threshold = float(os.getenv('MODEL_CONFIDENCE', '0.5'))
         self.cooldown = int(os.getenv('DETECTION_COOLDOWN', '5'))
         self.process_every_n_frames = int(os.getenv('PROCESS_EVERY_N_FRAMES', '10'))
         
@@ -109,7 +110,7 @@ class BirdDetector:
     def detect_birds_in_frame(self, frame):
         """Détecte les oiseaux dans une frame avec YOLO"""
         try:
-            results = self.yolo(frame, verbose=False, conf=self.confidence_threshold)
+            results = self.yolo(frame, verbose=False, conf=self.yolo_confidence_threshold)
             
             birds = []
             for result in results:
@@ -162,12 +163,6 @@ class BirdDetector:
             
             # Sauvegarder temporairement
             cv2.imwrite(temp_filename, bird_crop)
-            # Debug: vérifier si le fichier existe et sa taille
-            if Path(temp_filename).exists():
-                file_size = Path(temp_filename).stat().st_size
-                logger.info(f"[DEBUG] Fichier temporaire créé: {temp_filename} ({file_size} octets)")
-            else:
-                logger.error(f"[DEBUG] Échec de création du fichier temporaire: {temp_filename}")
             
             logger.info(f"🐦 Oiseau détecté (confiance: {bird_info['confidence']:.2f}) - Identification en cours...")
             
@@ -184,6 +179,12 @@ class BirdDetector:
                     data = response.json()
                     predictions = data['predictions']
                     processing_time = data.get('processing_time_ms', 0)
+
+                    
+                    if len(predictions) == 0:
+                        logger.info("❌ Aucune espèce identifiée avec confiance suffisante")
+                        Path(temp_filename).unlink(missing_ok=True)
+                        return
                     
                     # Afficher les résultats
                     logger.info(f"✅ Identification réussie ({processing_time:.0f}ms):")

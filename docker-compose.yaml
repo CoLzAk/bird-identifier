@@ -35,9 +35,14 @@ services:
 
 volumes:
   bird-captures:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/captures
+      o: bind
 
 networks:
   clzk-net:
-    external: true
+    external: false
     name: clzk-net
     driver: bridge
