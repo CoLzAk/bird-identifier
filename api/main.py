@@ -5,11 +5,12 @@ from pydantic import BaseModel
 from typing import List
 from pathlib import Path
 from dotenv import load_dotenv
+from inference import BirdPredictor
+from email_utils import send_bird_detection_email
+from species_utils import load_species_with_thumbnails
 import os
 
 load_dotenv()
-
-from inference import BirdPredictor
 
 app = FastAPI(
     title="Bird Species Classifier API",
@@ -72,13 +73,16 @@ def health_check():
 
 @app.get("/species")
 def list_species():
-    """Liste toutes les espèces d'oiseaux reconnues par le modèle"""
+    """Liste toutes les espèces d'oiseaux reconnues par le modèle avec leurs noms communs et images"""
     if predictor is None:
         raise HTTPException(status_code=503, detail="Modèle non chargé")
-    
+
+    # Load species data with base64 thumbnails
+    species_data = load_species_with_thumbnails()
+
     return {
-        "species": predictor.classes,
-        "count": len(predictor.classes)
+        "species": species_data,
+        "count": len(species_data)
     }
 
 @app.post("/identify", response_model=IdentifyResponse)
@@ -106,14 +110,30 @@ async def identify(
         # Lire l'image
         import time
         start_time = time.time()
-        
+
         image_bytes = await input.read()
-        
+
         # Prédiction
         predictions = predictor.predict_from_bytes(image_bytes, top_k=3)
-        
+
+        if (predictions[0]['probability'] < float(os.getenv('MODEL_CONFIDENCE', '0.6'))):
+            return {
+                "predictions": [],
+                "processing_time_ms": round((time.time() - start_time) * 1000, 2)
+            }
+
         processing_time = (time.time() - start_time) * 1000  # en ms
-        
+
+        # Send email notification (non-blocking, errors are logged but don't fail the request)
+        try:
+            await send_bird_detection_email(
+                image_bytes=image_bytes,
+                predictions=predictions,
+                filename=input.filename or "bird_detection.jpg"
+            )
+        except Exception as email_error:
+            print(f"⚠️ Email notification failed: {str(email_error)}")
+
         return {
             "predictions": predictions,
             "processing_time_ms": round(processing_time, 2)
@@ -124,34 +144,3 @@ async def identify(
             status_code=500,
             detail=f"Erreur lors de la prédiction : {str(e)}"
         )
-
-@app.post("/identify/detailed")
-async def identify_detailed(
-    input: UploadFile = File(...),
-    top_k: int = 5
-):
-    """
-    Version détaillée avec plus d'informations
-    """
-    if predictor is None:
-        raise HTTPException(status_code=503, detail="Modèle non chargé")
-    
-    try:
-        import time
-        start_time = time.time()
-        
-        image_bytes = await input.read()
-        predictions = predictor.predict_from_bytes(image_bytes, top_k=top_k)
-        
-        processing_time = (time.time() - start_time) * 1000
-        
-        return {
-            "filename": input.filename,
-            "content_type": input.content_type,
-            "predictions": predictions,
-            "processing_time_ms": round(processing_time, 2),
-            "top_prediction": predictions[0] if predictions else None
-        }
-        
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))

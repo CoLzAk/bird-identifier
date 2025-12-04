@@ -48,8 +48,7 @@ COPY model/ /model/
 RUN mkdir -p /tmp/ultralytics /tmp/huggingface /tmp/torch && \
     chmod 777 /tmp/ultralytics /tmp/huggingface /tmp/torch && \
     python -c "from ultralytics import YOLO; YOLO('yolo11n.pt')" && \
-    chmod -R 777 /tmp/ultralytics && \
-    mkdir -p /captures && chmod -R 777 /captures
+    chmod -R 777 /tmp/ultralytics
 
 # Expose port
 EXPOSE 8000

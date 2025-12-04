@@ -22,6 +22,9 @@ numpy = "^1.24.0"
 ultralytics = "^8.0.0"
 opencv-python-headless = "^4.8.0"  # headless pour serveur sans GUI
 requests = "^2.31.0"
+# Email
+aiosmtplib = "^3.0.0"
+email-validator = "^2.1.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.0"
